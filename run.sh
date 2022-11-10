@@ -1,3 +1,4 @@
+source .env
 OUTPUT_IMAGE=/home/diskimage-builder/ubuntu-nvidia
 
 disk-image-create vm dhcp-all-interfaces \
