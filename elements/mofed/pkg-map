@@ -1,0 +1,20 @@
+{
+    "family": {
+        "redhat": {
+            "perl": "perl",
+            "tcsh": "tcsh",
+            "tk": "tk",
+            "gcc-gfortran": "gcc-gfortran",
+            "tcl": "tcl",
+            "make": "make",
+            "createrepo": "createrepo",
+            "rpm-build": "rpm-build",
+            "gcc":"gcc",
+            "gtk2":"gtk2",
+            "atk":"atk",
+            "cairo":"cairo",
+            "pciutils":"pciutils",
+            "python-devel":"python-devel"
+        }
+    }
+}
