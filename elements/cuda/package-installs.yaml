@@ -1,0 +1,6 @@
+kernel-headers:
+kernel-devel:
+make:
+elfutils-libelf-devel:
+gcc:
+gcc-c++:
