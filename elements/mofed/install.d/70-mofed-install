@@ -15,15 +15,20 @@ mkdir /tmp/ofed_install
 mount -o ro,loop /tmp/MLNX* /tmp/ofed_install
 unset ARCH
 CHROOT_KERNEL=$(uname -r)
+
+echo "Release"
+echo "============================================"
+cat /etc/*release
+echo "============================================"
 echo "Current Kernel: $CHROOT_KERNEL"
-echo "ECHO THIS FILE"
 echo "============================================"
-cat /tmp/in_target.d/install.d/70-mofed-install
-echo "============================================"
-sudo apt update
-sudo apt upgrade
-sudo apt install linux-image-$CHROOT_KERNEL -y
-sudo apt install linux-headers-$CHROOT_KERNEL -y
+# Assume HOST and Image Kernel is same
+#sudo add-apt-repository ppa:cappelikan/ppa
+#sudo apt update
+#sudo apt upgrade
+#sudo apt install linux-image-$CHROOT_KERNEL -y
+#sudo apt install linux-headers-$CHROOT_KERNEL -y
+
 /tmp/ofed_install/mlnxofedinstall -k ${CHROOT_KERNEL} --without-fw-update --add-kernel-support --force
 export ARCH=amd64
 rm -f /etc/udev/rules.d/82-net-setup-link.rules
