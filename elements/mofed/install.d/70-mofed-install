@@ -8,14 +8,15 @@ set -o nounset
 set -o pipefail
 
 echo "############################################################"
-echo "# Install Mellanox OFED for CentOS OS with kernel support  #"
+echo "# Install Mellanox OFED for Ubuntu OS with kernel support  #"
 echo "############################################################"
 
 mkdir /tmp/ofed_install
 mount -o ro,loop /tmp/MLNX* /tmp/ofed_install
 unset ARCH
-CHROOT_KERNEL=$(rpm -q --queryformat "%{installtime} %{version}-%{release}.%{arch}\n" kernel | sort -nr | sed -n 1p | cut -d' ' -f2)
-install-packages kernel-devel-${CHROOT_KERNEL}
+CHROOT_KERNEL=$(uname -r)
+install-packages linux-image-$CHROOT_KERNEL
+install-packages linux-headers-$CHROOT_KERNEL
 /tmp/ofed_install/mlnxofedinstall -k ${CHROOT_KERNEL} --without-fw-update --add-kernel-support --force
 export ARCH=amd64
 rm -f /etc/udev/rules.d/82-net-setup-link.rules
