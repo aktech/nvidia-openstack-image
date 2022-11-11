@@ -29,7 +29,11 @@ mkdir -p /tmp/cuda
 cd /tmp/cuda
 
 if [ -n "${DIB_CUDA_URL}" ]; then
-    wget -nv $DIB_CUDA_URL
+    start=$(date +%s)
+    wget -nv "$DIB_CUDA_URL"
+    end=$(date +%s)
+    runtime=$((end-start))
+    echo "Time taken to Download CUDA: $runtime"
 else
     echo "ERROR: DIB_CUDA_URL is not set."
 fi
@@ -37,9 +41,13 @@ fi
 # Install cuda
 echo "Installing CUDA"
 unset ARCH
+start=$(date +%s)
 sh cuda_* --driver --toolkit --silent
+end=$(date +%s)
+runtime=$((end-start))
+echo "Time taken to Install CUDA: $runtime"
 
-# clean
+# Clean
 echo "Cleanup"
 export ARCH=amd64
 rm -Rf /tmp/cuda
