@@ -20,6 +20,8 @@ echo "#############################################################"
 #	exit 1
 #fi
 
+sudo apt-get install linux-headers-"$(uname -r)" -y
+
 # download cuda run file installer for ubuntu
 
 mkdir -p /tmp/cuda 
