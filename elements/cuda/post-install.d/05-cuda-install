@@ -12,15 +12,15 @@ echo "#############################################################"
 echo "# CUDA Installation                                         #"
 echo "#############################################################"
 
-# comparing chroot kernel with host kernel
-CHROOT_KERNEL=$(rpm -q --queryformat "%{installtime} %{version}-%{release}.%{arch}\n" kernel | sort -nr | sed -n 1p | cut -d' ' -f2)
-HOST_KERNEL=$(uname -r)
-if [ "$CHROOT_KERNEL" != "$HOST_KERNEL" ]; then
-	"ERROR: kernel mismatch!"
-	exit 1	
-fi
+## comparing chroot kernel with host kernel
+#CHROOT_KERNEL=$(rpm -q --queryformat "%{installtime} %{version}-%{release}.%{arch}\n" kernel | sort -nr | sed -n 1p | cut -d' ' -f2)
+#HOST_KERNEL=$(uname -r)
+#if [ "$CHROOT_KERNEL" != "$HOST_KERNEL" ]; then
+#	"ERROR: kernel mismatch!"
+#	exit 1
+#fi
 
-# download cuda run file installer for centos
+# download cuda run file installer for ubuntu
 
 mkdir -p /tmp/cuda 
 cd /tmp/cuda
