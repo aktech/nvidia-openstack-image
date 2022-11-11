@@ -7,4 +7,5 @@ disk-image-create vm dhcp-all-interfaces \
   dracut-regenerate growroot ubuntu \
   block-device-efi cuda -x \
   --no-tmpfs \
+  --logfile dib.log \
   -o "$OUTPUT_IMAGE"
