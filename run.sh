@@ -6,4 +6,5 @@ disk-image-create vm dhcp-all-interfaces \
   cloud-init-datasources cloud-init-config \
   dracut-regenerate growroot ubuntu \
   block-device-efi cuda -x \
+  --no-tmpfs \
   -o "$OUTPUT_IMAGE"
