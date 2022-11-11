@@ -15,7 +15,13 @@ mkdir /tmp/ofed_install
 mount -o ro,loop /tmp/MLNX* /tmp/ofed_install
 unset ARCH
 CHROOT_KERNEL=$(uname -r)
+echo "Current Kernel: $CHROOT_KERNEL"
+echo "ECHO THIS FILE"
+echo "============================================"
+/tmp/in_target.d/install.d/70-mofed-install
+echo "============================================"
 sudo apt-get update
+sudo apt-get upgrade
 sudo apt-get install linux-image-$CHROOT_KERNEL
 sudo apt-get install linux-headers-$CHROOT_KERNEL
 /tmp/ofed_install/mlnxofedinstall -k ${CHROOT_KERNEL} --without-fw-update --add-kernel-support --force
