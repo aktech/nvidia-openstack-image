@@ -20,10 +20,10 @@ echo "ECHO THIS FILE"
 echo "============================================"
 cat /tmp/in_target.d/install.d/70-mofed-install
 echo "============================================"
-sudo apt-get update
-sudo apt-get upgrade
-sudo apt-get install linux-image-$CHROOT_KERNEL
-sudo apt-get install linux-headers-$CHROOT_KERNEL
+sudo apt update
+sudo apt upgrade
+sudo apt install linux-image-$CHROOT_KERNEL -y
+sudo apt install linux-headers-$CHROOT_KERNEL -y
 /tmp/ofed_install/mlnxofedinstall -k ${CHROOT_KERNEL} --without-fw-update --add-kernel-support --force
 export ARCH=amd64
 rm -f /etc/udev/rules.d/82-net-setup-link.rules
