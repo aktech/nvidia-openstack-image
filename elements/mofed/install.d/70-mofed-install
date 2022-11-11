@@ -29,7 +29,13 @@ echo "============================================"
 #sudo apt install linux-image-$CHROOT_KERNEL -y
 #sudo apt install linux-headers-$CHROOT_KERNEL -y
 
-/tmp/ofed_install/mlnxofedinstall -k ${CHROOT_KERNEL} --without-fw-update --add-kernel-support --force
+/tmp/ofed_install/mlnxofedinstall -k ${CHROOT_KERNEL} \
+  --without-fw-update \
+  --add-kernel-support \
+  --force \
+  --kernel-sources /lib/modules/5.15.0-50-generic/build \
+  -vvv
+
 export ARCH=amd64
 rm -f /etc/udev/rules.d/82-net-setup-link.rules
 rm -f /etc/udev/rules.d/90-ib.rules

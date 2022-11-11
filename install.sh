@@ -10,4 +10,4 @@ python3 -m venv venv
 source venv/bin/activate
 pip3 install diskimage-builder
 
-wget -P /tmp/ https://storage.googleapis.com/akpublic/MLNX_OFED_LINUX-5.8-1.0.1.1-ubuntu22.10-x86_64.iso
+wget -P /tmp/ https://storage.googleapis.com/akpublic/MLNX_OFED_LINUX-5.8-1.0.1.1-ubuntu22.04-x86_64.iso
