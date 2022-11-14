@@ -23,32 +23,10 @@ echo "#############################################################"
 echo "Installing linux headers"
 sudo apt-get install linux-headers-"$(uname -r)" -y
 
-# download cuda run file installer for ubuntu
-
-mkdir -p /tmp/cuda 
-cd /tmp/cuda
-
-if [ -n "${DIB_CUDA_URL}" ]; then
-    start=$(date +%s)
-    wget -nv "$DIB_CUDA_URL"
-    end=$(date +%s)
-    runtime=$((end-start))
-    echo "Time taken to Download CUDA: $runtime"
-else
-    echo "ERROR: DIB_CUDA_URL is not set."
-fi
-
-# Install cuda
-echo "Installing CUDA"
-unset ARCH
-start=$(date +%s)
-sh cuda_* --driver --toolkit --silent
-end=$(date +%s)
-runtime=$((end-start))
-echo "Time taken to Install CUDA: $runtime"
-
-# Clean
-echo "Cleanup"
-export ARCH=amd64
-rm -Rf /tmp/cuda
+echo "Installing Nvidia Drivers"
+echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
+DEBIAN_FRONTEND=noninteractive sudo apt-get install -y -q
+DEBIAN_FRONTEND=noninteractive sudo apt update
+DEBIAN_FRONTEND=noninteractive sudo apt upgrade -y
+DEBIAN_FRONTEND=noninteractive sudo apt install nvidia-driver-515 -y
 echo "Done"
