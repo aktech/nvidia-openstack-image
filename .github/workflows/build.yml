@@ -2,6 +2,9 @@ name: Build Ubuntu NVIDIA Image
 
 on: push
 
+env:
+  OUTPUT_IMAGE_PATH: /tmp/ubuntu-nvidia
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -17,7 +20,8 @@ jobs:
 
       - name: Set output image path
         run: |
-          echo "OUTPUT_IMAGE_PATH=/tmp/ubuntu-nvidia-$timestamp" >> $GITHUB_ENV
+#          timestamp=$(date +%s)
+#          echo "OUTPUT_IMAGE_PATH=/tmp/ubuntu-nvidia-$timestamp" >> $GITHUB_ENV
           cat .env >> $GITHUB_ENV
       - name: Install dependencies
         shell: bash -el {0}
@@ -29,4 +33,6 @@ jobs:
 
       - name: Run disk image builder
         shell: bash -el {0}
-        run: bash run.sh
+        run: |
+          echo "OUTPUT_IMAGE_PATH: $OUTPUT_IMAGE_PATH"
+          bash run.sh
