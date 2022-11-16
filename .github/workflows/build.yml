@@ -20,8 +20,6 @@ jobs:
 
       - name: Set output image path
         run: |
-#          timestamp=$(date +%s)
-#          echo "OUTPUT_IMAGE_PATH=/tmp/ubuntu-nvidia-$timestamp" >> $GITHUB_ENV
           cat .env >> $GITHUB_ENV
       - name: Install dependencies
         shell: bash -el {0}
