@@ -4,8 +4,8 @@
 ### Upload to OpenStack
 
 ```bash
-openstack image create ubuntu-nvidia \
+openstack image create ubuntu-2204-nvidia-docker \
   --public --disk-format qcow2 \
   --container-format bare \
-  --file ubuntu-nvidia.qcow2
+  --file ubuntu-2204-nvidia-docker.qcow2
 ```
