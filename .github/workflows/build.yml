@@ -4,12 +4,10 @@ on: push
 
 env:
   OUTPUT_IMAGE_PATH: /tmp/ubuntu-nvidia
-#  ELEMENTS_PATH: /home/runnerx/actions-runner/_work/nvidia-openstack-image/nvidia-openstack-image/elements/
   ELEMENTS_PATH: /home/runner/work/nvidia-openstack-image/nvidia-openstack-image/elements/
 
 jobs:
   build:
-#    runs-on: "cirun-runner--${{ github.run_id }}"
     runs-on: ubuntu-latest
 
     steps:
@@ -27,8 +25,6 @@ jobs:
 
       - name: Setup Miniconda
         uses: conda-incubator/setup-miniconda@v2.2.0
-#        env:
-#          CONDA: "/home/runnerx/miniconda3"
         with:
           python-version: "3.10"
           miniconda-version: "latest"
@@ -41,8 +37,9 @@ jobs:
         id: output-image
         run: |
           timestamp=$(date +%s)
-          echo "OUTPUT_IMAGE=/tmp/output-image/nvidia-openstack-image-$timestamp" >> $GITHUB_ENV
-          echo "OUTPUT_IMAGE=/tmp/output-image/nvidia-openstack-image-$timestamp" >> $GITHUB_OUTPUT
+          output_image_name=nvidia-openstack-image-$timestamp
+          echo "OUTPUT_IMAGE=/tmp/output-image/$output_image_name" >> $GITHUB_ENV
+          echo "OUTPUT_IMAGE_NAME=$output_image_name" >> $GITHUB_OUTPUT
 
       - name: Install dependencies
         shell: bash -el {0}
@@ -52,9 +49,6 @@ jobs:
           sudo apt-get install qemu-utils -y
           pip install -r requirements.txt
           sudo apt install python3-pip -y
-
-#       - name: Debugging with tmate
-#         uses: mxschmitt/action-tmate@v3.13
 
       - name: Run disk image builder
         shell: bash -el {0}
@@ -66,5 +60,5 @@ jobs:
         name: Upload built disk image to GCS
         uses: 'google-github-actions/upload-cloud-storage@v1'
         with:
-          path: '/tmp/output-image/'
+          path: '/tmp/output-image/${{ steps.output-image.outputs.OUTPUT_IMAGE_NAME}}'
           destination: 'cirun/images/'
