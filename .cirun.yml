@@ -1,3 +1,5 @@
+# Self-Hosted Github Action Runners on GCP via Cirun.io
+runners:
   - name: aws-runner
     cloud: aws
     instance_type: t2.2xlarge
