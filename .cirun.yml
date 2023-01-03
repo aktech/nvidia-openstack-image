@@ -1,0 +1,6 @@
+  - name: aws-runner
+    cloud: aws
+    instance_type: t2.2xlarge
+    machine_image: ami-094fe3432e03738a2
+    labels:
+      - cirun-runner
