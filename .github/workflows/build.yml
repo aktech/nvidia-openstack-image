@@ -4,13 +4,14 @@ on: push
 
 env:
   OUTPUT_IMAGE_PATH: /tmp/ubuntu-nvidia
-#  ELEMENTS_PATH: /home/runner/work/nvidia-openstack-image/nvidia-openstack-image/elements/
-  ELEMENTS_PATH: /home/runnerx/actions-runner/_work/nvidia-openstack-image/nvidia-openstack-image/elements/
+  ELEMENTS_PATH: /home/runner/work/nvidia-openstack-image/nvidia-openstack-image/elements/
+#  ELEMENTS_PATH: /home/runnerx/actions-runner/_work/nvidia-openstack-image/nvidia-openstack-image/elements/
 
 
 jobs:
   build:
-    runs-on: "cirun-runner--${{ github.run_id }}"
+#    runs-on: "cirun-runner--${{ github.run_id }}"
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
@@ -30,8 +31,8 @@ jobs:
         with:
           python-version: "3.10"
           miniconda-version: "latest"
-        env:
-          CONDA: "/home/runnerx/miniconda3"
+#        env:
+#          CONDA: "/home/runnerx/miniconda3"
       - name: Set output image path
         run: |
           cat .env >> $GITHUB_ENV

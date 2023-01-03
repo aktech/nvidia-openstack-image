@@ -28,5 +28,5 @@ echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selecti
 DEBIAN_FRONTEND=noninteractive sudo apt-get install -y -q
 DEBIAN_FRONTEND=noninteractive sudo apt update
 DEBIAN_FRONTEND=noninteractive sudo apt upgrade -y
-DEBIAN_FRONTEND=noninteractive sudo apt install nvidia-driver-515 -y
+DEBIAN_FRONTEND=noninteractive sudo apt install nvidia-driver-525 -y
 echo "Done"
