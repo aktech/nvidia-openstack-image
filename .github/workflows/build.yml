@@ -29,6 +29,10 @@ jobs:
           sudo apt-get install qemu-utils -y
           pip install -r requirements.txt
 
+      - name: Debugging with tmate
+        uses: mxschmitt/action-tmate@v3.13
+
+
       - name: Run disk image builder
         shell: bash -el {0}
         run: |
