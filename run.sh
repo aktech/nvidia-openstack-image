@@ -7,5 +7,6 @@ if [[ -z "${OUTPUT_IMAGE}" ]]; then OUTPUT_IMAGE="/home/runnerx/nvidia-openstack
 disk-image-create vm dhcp-all-interfaces \
   block-device-gpt ubuntu \
   cuda -x \
+  misc \
   --no-tmpfs \
   -o "$OUTPUT_IMAGE"
