@@ -16,10 +16,10 @@ jobs:
         uses: 'google-github-actions/auth@v0'
         with:
           credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
-      - name: Set up Python
-        uses: conda-incubator/setup-miniconda@v2
+      - name: Setup Miniconda
+        uses: conda-incubator/setup-miniconda@v2.2.0
         env:
-          CONDA: "$HOME/miniconda3"
+          CONDA: "/home/runnerx/miniconda3"
         with:
           python-version: "3.10"
           miniconda-version: "latest"
