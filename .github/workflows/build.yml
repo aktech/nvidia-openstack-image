@@ -59,6 +59,10 @@ jobs:
           echo "OUTPUT_IMAGE_PATH: $OUTPUT_IMAGE_PATH"
           bash run.sh
 
+      - name: Debugging with tmate
+        uses: mxschmitt/action-tmate@v3.13
+        if: ${{ always() }}
+
       - id: 'upload-file'
         name: Upload built disk image to GCS
         uses: 'google-github-actions/upload-cloud-storage@v1'
