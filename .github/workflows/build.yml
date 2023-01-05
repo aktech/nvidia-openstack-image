@@ -6,6 +6,8 @@ env:
   OUTPUT_IMAGE_PATH: /tmp/ubuntu-nvidia
 #  ELEMENTS_PATH: /home/runner/work/nvidia-openstack-image/nvidia-openstack-image/elements/
   ELEMENTS_PATH: /home/runnerx/actions-runner/_work/nvidia-openstack-image/nvidia-openstack-image/elements/
+#  Workaround for upload-cloud-storage to work
+  OPENSSL_CONF: /dev/null
 
 
 jobs:
