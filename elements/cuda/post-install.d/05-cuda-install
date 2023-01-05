@@ -20,6 +20,9 @@ echo "#############################################################"
 #	exit 1
 #fi
 
+echo "Add hostname to /etc/hosts"
+echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo tee -a /etc/hosts
+
 echo "Installing linux headers"
 sudo apt-get install linux-headers-"$(uname -r)" -y
 
