@@ -26,7 +26,10 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v3.5.1
         with:
-          node-version: 18
+          node-version: 16
+
+      - name: Check NVIDIA SMI
+        run: nvidia-smi
 
       - name: Setup Miniconda
         uses: conda-incubator/setup-miniconda@v2.2.0
