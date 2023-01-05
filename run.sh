@@ -9,6 +9,6 @@ disk-image-create vm dhcp-all-interfaces \
   block-device-gpt ubuntu \
   cuda -x \
   misc \
-  --no-tmpfs "$LOG_TO_FILE" \
+  --no-tmpfs \
   -o "$OUTPUT_IMAGE"
 echo "Starting Disk Image Finished"
