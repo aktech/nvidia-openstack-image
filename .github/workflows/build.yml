@@ -27,7 +27,7 @@ jobs:
           node-version: 16
 
       - name: Check NVIDIA SMI
-        run: nvidia-smi
+        run: nvidia-smi || true
 
       - name: Debugging with tmate
         uses: mxschmitt/action-tmate@v3.13
