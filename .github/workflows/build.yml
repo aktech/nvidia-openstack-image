@@ -29,6 +29,9 @@ jobs:
       - name: Check NVIDIA SMI
         run: nvidia-smi
 
+      - name: Debugging with tmate
+        uses: mxschmitt/action-tmate@v3.13
+
       - name: Setup Miniconda
         uses: conda-incubator/setup-miniconda@v2.2.0
         with:
