@@ -1,11 +1,15 @@
 name: Upload Image to OpenStack
 
 on:
-  push:
   workflow_dispatch:
     inputs:
       image_name:
         description: 'Image name'
+        type: string
+        required: true
+
+      input_image_name:
+        description: 'Input Image Name in GCS'
         type: string
         required: true
 
@@ -39,9 +43,17 @@ jobs:
         run: |
           pip install python-openstackclient==6.0.0
 
-      - name: Install openstack client
+      - name: Check Openstack client
         run: |
           openstack help
 
-      - name: Debugging with tmate
-        uses: mxschmitt/action-tmate@v3.13
+      - name: Download image from GCS
+        run: |
+          echo "TODO"
+
+      - name: Upload image
+        run: |
+          openstack image create ${{ inputs.image_name }} \
+            --public --disk-format qcow2 \
+            --container-format bare \
+            --file ${{ inputs.input_image_name }}.qcow2
