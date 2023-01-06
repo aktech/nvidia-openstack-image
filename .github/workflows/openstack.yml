@@ -66,10 +66,6 @@ jobs:
           gsutil cp gs://cirun/images/${{ inputs.input_image_name }} $INPUT_IMAGE/
           ls $INPUT_IMAGE
 
-      - name: Debugging with tmate
-        if: always()
-        uses: mxschmitt/action-tmate@v3.13
-
       - name: Upload image
         run: |
           openstack image create ${{ inputs.image_name }} \
