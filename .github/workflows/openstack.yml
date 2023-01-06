@@ -23,6 +23,7 @@ env:
   OS_TENANT_NAME: ${{ secrets.OS_USERNAME }}
   OS_USERNAME: ${{ secrets.OS_USERNAME }}
   OS_USER_DOMAIN_NAME: Default
+  INPUT_IMAGE: /tmp/input-image
 
 jobs:
   build:
@@ -56,15 +57,13 @@ jobs:
 
       - name: Download image from GCS
         run: |
-          echo "TODO"
-
-      - name: Debugging with tmate
-        uses: mxschmitt/action-tmate@v3.13
-
+          mkdir $INPUT_IMAGE
+          gsutil cp gs://cirun/images/${{ inputs.input_image_name }} $INPUT_IMAGE/
+          ls $INPUT_IMAGE
 
       - name: Upload image
         run: |
           openstack image create ${{ inputs.image_name }} \
             --public --disk-format qcow2 \
             --container-format bare \
-            --file ${{ inputs.input_image_name }}.qcow2
+            --file $INPUT_IMAGE/${{ inputs.input_image_name }}
