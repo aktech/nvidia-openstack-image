@@ -1,11 +1,17 @@
 ## Nvidia Images for OpenStack
 
+Creates Ubuntu VM Image with following things installed:
 
-### Upload to OpenStack
+- nvidia drivers
+- docker
+
+This uploads the created image to GCS bucket.
+
+### Add Image to OpenStack
 
 ```bash
 openstack image create ubuntu-2204-nvidia-docker \
   --public --disk-format qcow2 \
   --container-format bare \
-  --file ubuntu-2204-nvidia-docker.qcow2
+  --file <created-image>.qcow2
 ```

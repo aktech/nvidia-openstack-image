@@ -1,0 +1,41 @@
+name: Upload Image to OpenStack
+
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+      image_name:
+        description: 'Image name'
+        type: string
+        required: true
+
+env:
+  OS_AUTH_URL: https://ci.quansight.dev/in-api/identity
+  OS_IDENTITY_API_VERSION: 3
+  OS_PASSWORD: ${{ secrets.OS_PASSWORD }}
+  OS_PROJECT_DOMAIN_NAME: Default
+  OS_PROJECT_NAME: ${{ secrets.OS_USERNAME }}
+  OS_REGION_NAME: RegionOne
+  OS_TENANT_NAME: ${{ secrets.OS_USERNAME }}
+  OS_USERNAME: ${{ secrets.OS_USERNAME }}
+  OS_USER_DOMAIN_NAME: Default
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Miniconda
+        uses: conda-incubator/setup-miniconda@v2.2.0
+        with:
+          python-version: "3.10"
+          miniconda-version: "latest"
+
+      - name: Install openstack client
+        run: |
+          pip install python-openstackclient==6.0.0
+
+      - name: Debugging with tmate
+        uses: mxschmitt/action-tmate@v3.13
