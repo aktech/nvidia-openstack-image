@@ -23,7 +23,9 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    defaults:
+      run:
+        shell: bash -el {0}
     steps:
       - uses: actions/checkout@v3
 
@@ -36,6 +38,10 @@ jobs:
       - name: Install openstack client
         run: |
           pip install python-openstackclient==6.0.0
+
+      - name: Install openstack client
+        run: |
+          openstack help
 
       - name: Debugging with tmate
         uses: mxschmitt/action-tmate@v3.13
