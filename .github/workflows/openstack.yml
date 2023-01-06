@@ -47,9 +47,20 @@ jobs:
         run: |
           openstack help
 
+      - uses: actions/checkout@v3
+      - id: 'auth'
+        name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v0'
+        with:
+          credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
+
       - name: Download image from GCS
         run: |
           echo "TODO"
+
+      - name: Debugging with tmate
+        uses: mxschmitt/action-tmate@v3.13
+
 
       - name: Upload image
         run: |
