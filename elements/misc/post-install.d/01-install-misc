@@ -7,13 +7,9 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-echo "Put Linux Kernel on Hold: Before Docker"
-dpkg-query -W --showformat='${Package} ${Status}\n' | grep -v deinstall | awk '{ print $1 }' | grep -E 'linux-headers|linux-image|linux-mo|linux-libc' | xargs -r -L 1 sudo apt-mark hold
-
 echo "#############################################################"
 echo "# Docker Installation                                       #"
 echo "#############################################################"
-
 
 echo "Installing Docker"
 echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
