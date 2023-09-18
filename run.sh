@@ -2,6 +2,8 @@
 
 set -ex
 
+start=$(date +%s)
+
 source .env
 timestamp=$(date +%s)
 OUTPUT_IMAGE=/opt/stack/ubuntu-nvidia-$timestamp
@@ -15,4 +17,8 @@ disk-image-create vm dhcp-all-interfaces \
   misc \
   --no-tmpfs \
   -o "$OUTPUT_IMAGE $LOG_TO_FILE"
+
+end=$(date +%s)
 echo "Disk Image Builder Finished"
+runtime=$((end-start))
+echo "Time taken to Finish: $runtime"
