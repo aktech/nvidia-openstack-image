@@ -1,9 +1,6 @@
 #!/bin/bash
-
 set -ex
-
 start=$(date +%s)
-
 source .env
 timestamp=$(date +%s)
 OUTPUT_IMAGE=/opt/stack/ubuntu-nvidia-$timestamp
@@ -16,7 +13,7 @@ disk-image-create vm dhcp-all-interfaces \
   cuda -x \
   misc \
   --no-tmpfs \
-  -o "$OUTPUT_IMAGE $LOG_TO_FILE"
+  -o "$OUTPUT_IMAGE" $LOG_TO_FILE
 
 end=$(date +%s)
 echo "Disk Image Builder Finished"
