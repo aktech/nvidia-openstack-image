@@ -29,3 +29,24 @@ echo "Done"
 echo "#############################################################"
 echo "# Docker Installation Complete                              #"
 echo "#############################################################"
+
+echo "#############################################################"
+echo "# Docker MTU PATCH                                          #"
+echo "#############################################################"
+
+python3 <<EOF
+import json
+from pathlib import Path
+mtu_data = {"mtu": 1200}
+daemon_json = Path("/etc/docker/daemon.json")
+if daemon_json.is_file():
+    data = json.loads(daemon_json.read_text())
+    data.update(mtu_data)
+    daemon_json.write_text(json.dumps(data))
+else:
+    daemon_json.write_text(json.dumps(mtu_data))
+EOF
+
+echo "#############################################################"
+echo "# MISC DONE                                                 #"
+echo "#############################################################"
