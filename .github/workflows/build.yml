@@ -1,6 +1,6 @@
 name: Build Ubuntu NVIDIA Image
 
-on: push
+on: workflow_dispatch
 
 env:
   OUTPUT_IMAGE_PATH: /tmp/ubuntu-nvidia
