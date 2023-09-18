@@ -1,4 +1,10 @@
+#!/bin/bash
+
+set -ex
+
 source .env
+timestamp=$(date +%s)
+OUTPUT_IMAGE=/opt/stack/ubuntu-nvidia-$timestamp
 
 if [[ -z "${LOG_TO_FILE}" ]]; then LOG_TO_FILE="--logfile dib.log"; fi
 
@@ -8,5 +14,5 @@ disk-image-create vm dhcp-all-interfaces \
   cuda -x \
   misc \
   --no-tmpfs \
-  -o "$OUTPUT_IMAGE"
-echo "Starting Disk Image Finished"
+  -o "$OUTPUT_IMAGE $LOG_TO_FILE"
+echo "Disk Image Builder Finished"
